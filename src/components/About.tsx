@@ -7,7 +7,10 @@ export default function About() {
   return (
     <section id="about" className="border-t border-bone/10">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
-        <p className="font-mono text-xs uppercase tracking-widest text-muted">{t.about.title}</p>
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <p className="font-mono text-xs uppercase tracking-widest text-muted">{t.about.title}</p>
+          <p className="font-mono text-xs uppercase tracking-widest text-accent">{t.about.since}</p>
+        </div>
         <div className="mt-8 grid gap-10 lg:grid-cols-12">
           <blockquote className="font-display text-3xl font-semibold uppercase leading-[1.05] text-bone sm:text-5xl lg:col-span-7">
             {t.about.philosophy}

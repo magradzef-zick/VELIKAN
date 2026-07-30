@@ -6,7 +6,10 @@ export default function Footer() {
   return (
     <footer className="border-t border-bone/10">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 font-mono text-xs uppercase tracking-wider text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <span className="text-bone">{t.footer.tagline}</span>
+        <span className="flex items-center gap-2 text-bone">
+          <img src="/logo-mark.jpg" alt="" aria-hidden className="h-5 w-5 object-cover" />
+          {t.footer.tagline}
+        </span>
         <a
           href="https://t.me/velikan_kiyim"
           target="_blank"

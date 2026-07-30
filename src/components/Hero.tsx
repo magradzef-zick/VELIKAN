@@ -1,6 +1,7 @@
 import { useLanguage } from '../i18n/LanguageContext'
 
-const SIZE_RUN = ['3XL', '4XL', '5XL', '6XL', '44—50']
+/* real range from the store's own promo: sizes 3XL–10XL, footwear 44–50 */
+const SIZE_RUN = ['3XL—10XL', '44—50']
 
 export default function Hero() {
   const { t } = useLanguage()
@@ -24,7 +25,7 @@ export default function Hero() {
         <p className="max-w-md text-base leading-relaxed text-bone/70 sm:text-lg">{t.hero.subtitle}</p>
         <div className="flex flex-col gap-3 sm:flex-row">
           <a
-            href="#catalog"
+            href="#/catalog"
             className="bg-accent px-8 py-4 text-center font-mono text-sm font-medium uppercase tracking-wider text-ink transition-colors hover:bg-bone"
           >
             {t.hero.ctaCatalog}

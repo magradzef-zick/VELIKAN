@@ -24,6 +24,7 @@ export interface Dictionary {
     hoursLabel: string
     hours: string
     philosophy: string
+    since: string
   }
   catalog: {
     title: string
@@ -31,6 +32,14 @@ export interface Dictionary {
     categories: CatalogCategory[]
     comingSoon: string
     allLabel: string
+  }
+  shop: {
+    previewTitle: string
+    viewAll: string
+    backHome: string
+    sizesLabel: string
+    approxNote: string
+    currency: string
   }
   whyUs: {
     title: string
