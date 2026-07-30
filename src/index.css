@@ -1,27 +1,80 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0a0a0a;
-  --color-ink-raised: #141414;
-  --color-accent-orange: #ff6a1a;
-  --color-accent-pink: #ff2d78;
-  --font-display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --color-ink: #0f0d0a;
+  --color-ink-raised: #17140f;
+  --color-bone: #e9e2d2;
+  --color-accent: #ff4d00;
+  --color-muted: #8a8272;
+  --font-display: "Oswald", "Manrope", system-ui, sans-serif;
   --font-body: "Manrope", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--color-ink);
+}
+
+/* keep anchor-jump targets clear of the fixed header */
+section[id] {
+  scroll-margin-top: 3.5rem;
 }
 
 body {
   background-color: var(--color-ink);
-  color: #f5f5f5;
+  color: var(--color-bone);
   font-family: var(--font-body);
 }
 
-.text-gradient {
-  background-image: linear-gradient(90deg, var(--color-accent-orange), var(--color-accent-pink));
-  -webkit-background-clip: text;
-  background-clip: text;
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* size-run marquee: track holds two copies, loops at -50% for a seamless join */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 22s linear infinite;
+}
+
+/* outline-only display type (footer bookend) */
+.text-ghost {
   color: transparent;
+  -webkit-text-stroke: 1px rgba(233, 226, 210, 0.16);
+}
+
+/* outline-only display type inside catalog tiles; stroke set per tile theme */
+.tile-ghost {
+  color: transparent;
+}
+
+.tile-ghost-on-bone {
+  -webkit-text-stroke: 1.5px rgba(15, 13, 10, 0.35);
+}
+
+.tile-ghost-on-ink {
+  -webkit-text-stroke: 1.5px rgba(233, 226, 210, 0.22);
+}
+
+/* sink the Google Maps embed into the dark editorial palette */
+.map-dark {
+  filter: grayscale(1) invert(0.92) contrast(0.9) hue-rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track {
+    animation: none;
+  }
 }

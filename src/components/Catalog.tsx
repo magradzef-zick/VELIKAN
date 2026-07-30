@@ -11,40 +11,46 @@ export default function Catalog() {
   const tabs = [{ id: 'all', title: t.catalog.allLabel }, ...t.catalog.categories]
 
   return (
-    <section id="catalog" className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-      <h2 className="font-[var(--font-display)] text-3xl font-bold sm:text-4xl">{t.catalog.title}</h2>
-      <p className="mt-4 max-w-2xl text-white/60">{t.catalog.subtitle}</p>
+    <section id="catalog" className="border-t border-bone/10">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <h2 className="font-display text-5xl font-semibold uppercase leading-none text-bone sm:text-7xl">
+            {t.catalog.title}
+          </h2>
+          <p className="mb-1 max-w-xs text-sm text-muted">{t.catalog.subtitle}</p>
+        </div>
 
-      <div role="tablist" aria-label={t.catalog.title} className="mt-8 flex flex-wrap gap-2">
-        {tabs.map((tab) => {
-          const isActive = active === tab.id
-          return (
-            <button
-              key={tab.id}
-              role="tab"
-              aria-selected={isActive}
-              onClick={() => setActive(tab.id)}
-              className="relative rounded-full px-4 py-2 text-sm font-semibold transition active:scale-95"
-            >
-              {isActive && (
-                <motion.span
-                  layoutId="catalog-tab-pill"
-                  transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                  className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-[var(--color-accent-orange)] to-[var(--color-accent-pink)]"
-                />
-              )}
-              <span className={isActive ? 'text-white' : 'text-white/60 hover:text-white'}>{tab.title}</span>
-            </button>
-          )
-        })}
-      </div>
+        <div role="tablist" aria-label={t.catalog.title} className="mt-10 flex flex-wrap gap-2">
+          {tabs.map((tab) => {
+            const isActive = active === tab.id
+            return (
+              <button
+                key={tab.id}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActive(tab.id)}
+                className="isolate relative px-4 py-2 font-mono text-xs uppercase tracking-wider transition active:scale-95"
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="catalog-tab-block"
+                    transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                    className="absolute inset-0 -z-10 bg-accent"
+                  />
+                )}
+                <span className={isActive ? 'text-ink' : 'text-muted hover:text-bone'}>{tab.title}</span>
+              </button>
+            )
+          })}
+        </div>
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <AnimatePresence mode="popLayout">
-          {visible.map((category) => (
-            <CatalogTile key={category.id} category={category} />
-          ))}
-        </AnimatePresence>
+        <div className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          <AnimatePresence mode="popLayout">
+            {visible.map((category) => (
+              <CatalogTile key={category.id} category={category} />
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   )

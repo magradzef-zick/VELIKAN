@@ -1,44 +1,57 @@
 import { useLanguage } from '../i18n/LanguageContext'
 
+const SIZE_RUN = ['3XL', '4XL', '5XL', '6XL', '44—50']
+
 export default function Hero() {
   const { t } = useLanguage()
+  const marqueeItems = [...SIZE_RUN, t.hero.title.toUpperCase()]
 
   return (
-    <section
-      id="top"
-      className="relative flex min-h-[90vh] flex-col items-center justify-center gap-8 overflow-hidden px-4 pt-24 text-center sm:px-6"
-    >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_20%,rgba(255,45,120,0.18),transparent_60%)]"
-      />
-
-      <span className="rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
-        {t.hero.kicker}
-      </span>
-
-      <div className="flex max-w-2xl flex-col gap-6">
-        <h1 className="font-[var(--font-display)] text-6xl font-extrabold leading-none tracking-tight sm:text-8xl">
-          <span className="text-gradient">{t.hero.title}</span>
-        </h1>
-        <p className="text-balance text-lg leading-relaxed text-white/70 sm:text-xl">{t.hero.subtitle}</p>
+    <section id="top" className="flex min-h-svh flex-col justify-between overflow-hidden pt-16">
+      <div className="mx-auto flex w-full max-w-6xl items-start justify-between gap-4 px-4 pt-8 font-mono text-xs uppercase tracking-widest text-muted sm:px-6">
+        <span>{t.hero.kicker}</span>
+        <span className="text-right">{SIZE_RUN.join(' · ')}</span>
       </div>
 
-      <div className="flex flex-col gap-4 sm:flex-row">
-        <a
-          href="#catalog"
-          className="rounded-full bg-gradient-to-r from-[var(--color-accent-orange)] to-[var(--color-accent-pink)] px-8 py-3 font-semibold text-white shadow-lg shadow-black/30 transition hover:brightness-110 active:scale-95"
-        >
-          {t.hero.ctaCatalog}
-        </a>
-        <a
-          href="https://t.me/velikan_kiyim"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-full border border-white/20 px-8 py-3 font-semibold text-white transition hover:bg-white/10 active:scale-95"
-        >
-          {t.hero.ctaTelegram}
-        </a>
+      {/* the word is set too big for the viewport on purpose — the brand is the size */}
+      <h1
+        className="-ml-[0.04em] select-none whitespace-nowrap font-display text-[34vw] font-bold uppercase leading-[0.9] text-bone"
+      >
+        {t.hero.title}
+      </h1>
+
+      <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 pb-12 sm:px-6 md:grid-cols-[1fr_auto] md:items-end">
+        <p className="max-w-md text-base leading-relaxed text-bone/70 sm:text-lg">{t.hero.subtitle}</p>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <a
+            href="#catalog"
+            className="bg-accent px-8 py-4 text-center font-mono text-sm font-medium uppercase tracking-wider text-ink transition-colors hover:bg-bone"
+          >
+            {t.hero.ctaCatalog}
+          </a>
+          <a
+            href="https://t.me/velikan_kiyim"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-bone/25 px-8 py-4 text-center font-mono text-sm font-medium uppercase tracking-wider text-bone transition-colors hover:border-bone hover:bg-bone/5"
+          >
+            {t.hero.ctaTelegram}
+          </a>
+        </div>
+      </div>
+
+      <div aria-hidden className="overflow-hidden bg-accent py-2.5 text-ink">
+        <div className="marquee-track flex w-max whitespace-nowrap font-mono text-sm font-medium uppercase tracking-widest">
+          {[0, 1].map((copy) => (
+            <span key={copy} className="flex">
+              {Array.from({ length: 4 }, () => marqueeItems).flat().map((item, i) => (
+                <span key={i} className="px-4">
+                  {item} ·
+                </span>
+              ))}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   )

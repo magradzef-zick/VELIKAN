@@ -1,23 +1,26 @@
 import { useLanguage } from '../i18n/LanguageContext'
+import CareLabel from './CareLabel'
 
 export default function About() {
   const { t } = useLanguage()
 
   return (
-    <section id="about" className="mx-auto max-w-4xl px-4 py-24 sm:px-6">
-      <h2 className="font-[var(--font-display)] text-3xl font-bold sm:text-4xl">{t.about.title}</h2>
-      <p className="mt-6 text-lg text-white/70">{t.about.body}</p>
-      <p className="mt-4 text-lg font-semibold text-gradient">{t.about.philosophy}</p>
-      <dl className="mt-10 grid gap-6 sm:grid-cols-2">
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <dt className="text-sm font-semibold uppercase tracking-wide text-white/50">{t.about.addressLabel}</dt>
-          <dd className="mt-2 text-white/90">{t.about.address}</dd>
+    <section id="about" className="border-t border-bone/10">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
+        <p className="font-mono text-xs uppercase tracking-widest text-muted">{t.about.title}</p>
+        <div className="mt-8 grid gap-10 lg:grid-cols-12">
+          <blockquote className="font-display text-3xl font-semibold uppercase leading-[1.05] text-bone sm:text-5xl lg:col-span-7">
+            {t.about.philosophy}
+          </blockquote>
+          <div className="space-y-8 lg:col-span-5">
+            <p className="leading-relaxed text-bone/70">{t.about.body}</p>
+            <dl className="space-y-4">
+              <CareLabel label={t.about.addressLabel} value={t.about.address} />
+              <CareLabel label={t.about.hoursLabel} value={t.about.hours} />
+            </dl>
+          </div>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <dt className="text-sm font-semibold uppercase tracking-wide text-white/50">{t.about.hoursLabel}</dt>
-          <dd className="mt-2 text-white/90">{t.about.hours}</dd>
-        </div>
-      </dl>
+      </div>
     </section>
   )
 }
