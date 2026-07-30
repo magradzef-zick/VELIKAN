@@ -4,6 +4,11 @@ dist
 *.local
 *.tsbuildinfo
 .playwright-mcp
+.remember
+
+.env
+.env.*
+!.env.example
 
 # raw source photos (35MB of originals/screenshots) — kept on disk, not in the
 # repo; the web-optimized derivatives that the site actually serves are in public/products
