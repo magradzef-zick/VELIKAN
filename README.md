@@ -2,7 +2,7 @@
 
 Site for VELIKAN, a big & tall menswear shop in Tashkent (Yunusabad, Osiyo 85). They sell clothing up to 10XL and shoes up to size 50, which is genuinely hard to find here, and most of their customers were finding them through Instagram and Telegram with no real site to land on. So: a single-page site with a catalog, built mobile-first because that's where basically all the traffic comes from.
 
-No backend. Product data lives in a TypeScript file and the photos are static assets — the shop updates stock by sending new photos, not by logging into a CMS.
+No backend. Product data lives in a TypeScript file and the photos are static assets. The shop updates stock by sending new photos, not by logging into a CMS.
 
 ![Landing page](docs/screenshots/hero.jpg)
 
@@ -15,7 +15,7 @@ npm install
 npm run dev
 ```
 
-`npm run build` outputs to `dist/`. It's a static bundle, so any static host works — no server config or rewrite rules needed.
+`npm run build` outputs to `dist/`. It's a static bundle, so any static host works without server config or rewrite rules.
 
 ## Stack
 
@@ -37,11 +37,11 @@ Sizes come from the shop's own Telegram posts where they were listed. Where they
 
 ## Russian and Uzbek
 
-Both languages are real translations, not machine output — the shop's customers are split between them and the copy has to sound right in each. Russian is the default; the choice persists in `localStorage`.
+Both languages are real translations, not machine output. The shop's customers are split between them, and the copy has to sound right in each. Russian is the default, and the choice persists in `localStorage`.
 
 ![Catalog in Uzbek](docs/screenshots/catalog-uz.jpg)
 
-It's a plain React context over two typed dictionaries in `src/i18n/`. `Dictionary` is a TypeScript interface, so `tsc` fails the build if one language is missing a key that the other has — which is the main thing that goes wrong with bilingual copy over time. No i18n library; there's no pluralization or date formatting to handle, so there was nothing to install one for.
+It's a plain React context over two typed dictionaries in `src/i18n/`. `Dictionary` is a TypeScript interface, so `tsc` fails the build if one language is missing a key that the other has, which is the main thing that goes wrong with bilingual copy over time. There's no i18n library: with no pluralization or date formatting to handle, there was nothing to install one for.
 
 Product names and descriptions are localized in `src/data/products.ts` alongside the rest of the product data rather than in the dictionaries, since they're per-item content.
 
